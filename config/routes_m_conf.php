@@ -3,16 +3,13 @@ class routes_m_conf extends connection{
 
 	function get_routes($page)
 	{
-		$sql = "select * from routes where route='$page'";
-			//SQL INJECTION
-
-		
-			$result = $this->conn->query($sql);
-
-			if ($result->num_rows > 0) {
-			   return $result;
+		$array = (array)json_decode(file_get_contents("config/routing.json"));
+		$selected_route = $array[$page];
+			
+			if (sizeof($selected_route) > 0) {
+			   return (array)$selected_route;
 			} else {
-			    return false;
+			    return array();
 			}
 
 	}

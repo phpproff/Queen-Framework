@@ -1,14 +1,17 @@
 {
-    "hjkhj": {
-        "controller": null,
-        "method": "ham_meth"
+    "about": {
+        "controller": "about_c",
+        "method": "index",
+        "title": "About Us"
     },
-    "www": {
-        "controller": "index",
-        "method": "http"
+    "index": {
+        "controller": "index_c",
+        "method": "index",
+        "title": "Home Page"
     },
-    "eee": {
-        "controller": null,
-        "method": "index"
+    "ohood": {
+        "title": "Ohood",
+        "controller": "ohood",
+        "method": "cake"
     }
 }

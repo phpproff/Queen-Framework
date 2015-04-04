@@ -9,9 +9,7 @@ class config_conf extends connection{
 	$this->smarty = $smarty;
 	$model=new config_m_conf();
 
-	$result = $model->get_routes();
-		while ($row = $result->fetch_assoc())
-			$menu[] =  $row;
+	$menu = $model->get_routes();
 	$this->smarty->assign('menu',$menu);
 	}
 }

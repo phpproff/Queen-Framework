@@ -11,18 +11,29 @@ function get_routes($page)
 {
 	$model = new routes_m_conf();
 	$result = $model->get_routes($page);
-	if($result->num_rows > 0 ){
-	$row = $result->fetch_assoc();
-	$controller = new $row['controller']();
-	if($row['method']=="")
-		$row['method'] = "index";
+	if(is_array($result))
+	{
+		
 
-	$controller->$row['method']();
+		if(sizeof($result) > 0 ){
+		$controller = new $result['controller']();
+		if($result['method']=="")
+			$result['method'] = "index";
+		$controller->{$result['method']}();
+		
+		
+		}
+
+			else
+			{
+				$controller = new error_conf();
+				$controller->err_404();
+			}
 	}
 	else
 	{
-		$controller = new error_conf();
-		$controller->err_404();
+		$controller = new index_c();
+		$controller->index();
 	}
 
 

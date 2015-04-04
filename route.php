@@ -12,11 +12,21 @@ class read
 		
 	}
 }
-echo "Enter Name of Route , or click enter to skip: ";
+echo "\nEnter Name of Route , or click enter to skip: ";
 $read = new read();
 	if ($read->response != '') {
 	  echo "Creating a Route:   " .$read->response;
 	 $route = $read->response;
+
+
+	 echo "\nWhat is the title of this Route ? ";
+	 $read = new read();
+	if ($read->response != '') {
+	  echo "Creating a title:   " .$read->response;
+	 $route_title = $read->response;
+	}
+
+
 	}
 
 
@@ -45,7 +55,7 @@ if($route != "")
 {
 	if($method=="")
 		$method="index";
-	 create_route($route,$cont,$method);
+	 create_route($route_title,$route,$cont,$method);
 }
 echo "Create Model ? ";
 $read = new read();
@@ -114,7 +124,7 @@ $view='<h1>Here goes HTML </h1>';
 file_put_contents("templates/" . $v."_v.php", $view,LOCK_EX);
 }
 
-function create_route($route,$controller="index",$method="index")
+function create_route($route_title="",$route,$controller="index",$method="index")
 {
 
 
@@ -124,7 +134,8 @@ $array_of_all_routes = $routes->get();
 echo "\n";
 print_r($array_of_all_routes);
 echo "\n";
-$array_of_all_routes[$route]=array("controller"=>$controller,"method"=>$method);
+$array_of_all_routes[$route]=array("title"=>$route_title, "controller"=>$controller,"method"=>$method);
+
 print_r($array_of_all_routes);
 $routes->save($array_of_all_routes);
 
@@ -134,6 +145,8 @@ $routes->save($array_of_all_routes);
 
 
 }
+
+
 
 function create_method($method,$c)
 {

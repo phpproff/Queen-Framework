@@ -1,7 +1,14 @@
 <?php
 function autoload($class)
 {
-
+global $route_to_admin;
+if($route_to_admin)
+{
+	if($_SESSION['is_admin'])
+		$folder= "admin/";
+	else
+		header("location: index.php?page=cmslogin&err=1");
+}
 
 // model : file_m.php
 // controller: file_c.php
@@ -9,9 +16,9 @@ function autoload($class)
 // config
 $class .= ".php";
 if(stristr($class,"_c.php"))
-	include("controllers/$class");
+	include("controllers/". $folder ."$class");
 elseif(stristr($class,"_m.php"))
-	include("models/$class");
+	include("models/". $folder ."$class");
 elseif(stristr($class,"_v.php"))
 	include("templates/$class");
 elseif(stristr($class,"smarty.php"))
