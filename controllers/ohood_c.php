@@ -15,6 +15,4 @@ class ohood_c extends config_conf{
 
 
 
-}
-?>
 }//end_of_file?>
