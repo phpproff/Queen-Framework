@@ -1,0 +1,14 @@
+{
+    "hjkhj": {
+        "controller": null,
+        "method": "ham_meth"
+    },
+    "www": {
+        "controller": "index",
+        "method": "http"
+    },
+    "eee": {
+        "controller": null,
+        "method": "index"
+    }
+}

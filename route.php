@@ -1,5 +1,7 @@
 <?php
-echo "Enter Name of Route , or click enter to skip: ";
+// Run from Terminal { php route.php }
+require("config/routing_conf.php");
+echo "01f4" == "001f4";
 class read
 {
 	public $response;
@@ -7,14 +9,14 @@ class read
 	{
 		$stdin = fopen('php://stdin', 'r');
 		$this->response = trim(fgets(STDIN));	
-	
+		
 	}
 }
-
+echo "Enter Name of Route , or click enter to skip: ";
 $read = new read();
 	if ($read->response != '') {
 	  echo "Creating a Route:   " .$read->response;
-	  
+	 $route = $read->response;
 	}
 
 
@@ -24,6 +26,8 @@ $read = new read();
 	if ($read->response != '') {
 	  echo "Creating a Controller:   " .$read->response;
 	  create_controller($read->response);
+	   $cont = $read->response;
+
 	}
 
 
@@ -31,15 +35,23 @@ echo "Create a method in controller example:users->add_user ? ";
 $read = new read();
 	if ($read->response != '') {
 	  echo "Creating a method:   " .$read->response;
-	  create_method($read->response,$controller);
+	  $cont = substr($read->response,0,strpos($read->response,"->"));
+	  $controller = $cont;
+	  $method =   substr($read->response,strpos($read->response,"->")+2);
+	  create_method($method,$controller);
 	}
 
-
+if($route != "")
+{
+	if($method=="")
+		$method="index";
+	 create_route($route,$cont,$method);
+}
 echo "Create Model ? ";
 $read = new read();
 	if ($read->response != '') {
 	  echo "Creating a Model:   " .$read->response;
-	  //create_model($read->response);
+	  create_model($read->response);
 	}
 
 
@@ -53,7 +65,7 @@ $read = new read();
 
 
 
-die();
+
 
 
 function create_controller($c)
@@ -64,7 +76,7 @@ class '.$c.'_c extends config_conf{
 	function index()
 	{
 	
-	Controller Logic
+	//Controller Logic
 		
 
 	// Edit just if require
@@ -102,8 +114,50 @@ $view='<h1>Here goes HTML </h1>';
 file_put_contents("templates/" . $v."_v.php", $view,LOCK_EX);
 }
 
-function create_route($route,$controller,$method)
+function create_route($route,$controller="index",$method="index")
 {
+
+
+$routes= new routing_conf();
+echo "\n";
+$array_of_all_routes = $routes->get();
+echo "\n";
+print_r($array_of_all_routes);
+echo "\n";
+$array_of_all_routes[$route]=array("controller"=>$controller,"method"=>$method);
+print_r($array_of_all_routes);
+$routes->save($array_of_all_routes);
+
+
+
+
+
+
+}
+
+function create_method($method,$c)
+{
+	$controller = file_get_contents("controllers/$c" . "_c.php");
+	$method='
+
+	function '.$method.'()
+	{
+	
+	//Controller Logic
+		
+
+	// Edit just if require
+	//$this->smarty->display(\'THEME.tpl\');	
+
+		
+	}
+
+	';
+	$controller = str_replace('}//end_of_file?>',"",str_replace('}//end_of_file?>' , $method, $controller )). '}//end_of_file?>';
+
+	file_put_contents("controllers/" . $c."_c.php", $controller,LOCK_EX);
+
+	//}//end_of_file
 // Create json file better than DB
 }
 
