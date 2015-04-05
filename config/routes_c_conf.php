@@ -11,7 +11,7 @@ function get_routes($page)
 {
 	$model = new routes_m_conf();
 	$result = $model->get_routes($page);
-	if(is_array($result))
+	if($result['controller'] != "")
 	{
 		
 
