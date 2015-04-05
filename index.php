@@ -1,8 +1,8 @@
 <?php
 
-$page= $_GET['page'];
+$page= $_GET['page'];  // for user
 
-$p = $_GET['p'];
+$p = $_GET['p'];  // for admin
 if($p !="")
 {
 	$route_to_admin=true;

@@ -19,8 +19,6 @@ if(stristr($class,"_c.php"))
 	include("controllers/". $folder ."$class");
 elseif(stristr($class,"_m.php"))
 	include("models/". $folder ."$class");
-elseif(stristr($class,"_v.php"))
-	include("templates/$class");
 elseif(stristr($class,"smarty.php"))
 	include("Smarty/libs/Smarty.class.php");
 

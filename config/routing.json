@@ -1,17 +1,27 @@
-{
+{"user":{
     "about": {
         "controller": "about_c",
         "method": "index",
-        "title": "About Us"
-    },
-    "index": {
-        "controller": "index_c",
-        "method": "index",
-        "title": "Home Page"
-    },
-    "ohood": {
-        "title": "Ohood",
-        "controller": "ohood",
-        "method": "cake"
+        "title": "About Us",
+        "visible":true
+        },
+        "index": {
+            "controller": "index_c",
+            "method": "index",
+            "title": "Home Page",
+            "visible":true
+        }
+        },
+"admin" :{
+    "manage_users": {
+        "title": "Manage Users",
+        "controller": "users_c",
+        "method": "manage"
+        },
+        "delete": {
+            "title": "Delete User",
+            "controller": "users_c",
+            "method": "delete"
+        }
     }
-}
+        }

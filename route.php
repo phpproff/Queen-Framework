@@ -134,7 +134,7 @@ $array_of_all_routes = $routes->get();
 echo "\n";
 print_r($array_of_all_routes);
 echo "\n";
-$array_of_all_routes[$route]=array("title"=>$route_title, "controller"=>$controller,"method"=>$method);
+$array_of_all_routes[$route]=array("title"=>$route_title, "controller"=>$controller . "_c","method"=>$method );
 
 print_r($array_of_all_routes);
 $routes->save($array_of_all_routes);

@@ -4,6 +4,7 @@ class config_m_conf  extends connection{
 
 	$array = json_decode(file_get_contents("config/routing.json"), true);
 		
+			
 			return $array;
 
 

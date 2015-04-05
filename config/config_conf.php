@@ -10,7 +10,14 @@ class config_conf extends connection{
 	$model=new config_m_conf();
 
 	$menu = $model->get_routes();
-	$this->smarty->assign('menu',$menu);
+	$menu = $menu['user'];
+	foreach($menu as $id=>$val)
+	{
+		if($val['visible'] === true)
+			$final_menu[]=$val;
+	}
+	
+	$this->smarty->assign('menu',$final_menu);
 	}
 }
 ?>
