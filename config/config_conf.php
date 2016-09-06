@@ -11,7 +11,7 @@ class config_conf extends connection{
 
 	$menu = $model->get_routes();
 	$menu = $menu['user'];
-	foreach($menu as $id=>$val)
+	foreach($menu as $val)
 	{
 		if($val['visible'] === true)
 			$final_menu[]=$val;
